@@ -1,186 +1,36 @@
-/* CAR NINJA GAME CSS */
-/*******************************
-  RESETS & GLOBAL STYLES IN BODY
-********************************/
-* {
-    box-sizing: border-box;
-}
+/* Add to your existing CSS */
 
-body {
-    background-color: lightgrey;
-}
-
-
-
-/*****************************
-  HEADER STYLES
-*****************************/
-header h1 { /* chose header h1 to differentiate between other headers on other screens */
-    color: cornflowerblue;/* originally using this color and might come back to color: rgb(39, 39, 231); */
-    -webkit-text-stroke: 1px black; /* Black outline around letters */
+/* Game elements */
+.car {
+    cursor: pointer;
+  }
+  
+  .pothole {
+    background-image: url("https://media.istockphoto.com/id/174662203/photo/pot-hole.jpg");
+    background-size: cover;
+    cursor: pointer;
+  }
+  
+  .low-time {
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* Game over screen styles */
+  #gameover-screen {
     text-align: center;
-    margin-bottom: 5px;
-}
-
-h2 {
-    margin-top: 0; 
-    /* removes all space above */
-    margin-bottom: .8px;
-    color: cornflowerblue;
-    -webkit-text-stroke: 1px black;
-    text-align: center;
-    margin-bottom: 11px;
-}
-
-
-
-/*****************************
- NAVIGATION BAR STYLES
-*****************************/
-nav {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-
-
-/*****************************
-  BUTTON STYLES
-*****************************/
-
-/* ALL BUTTONS */
-.buttons {
-    /* dark blue with light blue border */
-    background-color: cornflowerblue;
-}
-
-/* START GAME BUTTON & INSTRUCTIONS BUTTONS */
-#start-game, #instructions {
-    background-color: yellow;
-}
-
-/* BACK TO HOME SCREEN BUTTON */
-#play-again, #back-to-home-screen {
-    background-color: yellow;
-}
-
-
-
-/*******************************
-  HIDING SCREENS
-********************************/
-.screens {
-    display: none;
-}
-
-.active { 
-    /* Any element with class="active" will be visible on the screen. And the class="active" is done in JS */
-    display: block;
-}
-
-
-
-/*****************************
-  SCREEN-SPECIFIC STYLES
-*****************************/
-
-/* Styling Of Different Screens below */
-#starter-screen h2, #instructions-screen h2 {
-    color: cornflowerblue;/* originally using this color and might come back to color: rgb(39, 39, 231); */
-    -webkit-text-stroke: 1px black; /* Black outline around letters */
-    text-align: left;
-}
-
-/* #gameplay-screen-title {} */
-
-
-/* DOUBLE CHECK THIS STYLING BELOW WITH RESETING MARGIN AND MAKE SURE IT'S CORRECT */
-#instructions-screen p,
-#instructions-screen ol {
-margin: 0;/* Resets top/bottom margins */
- }
-
-
-#instructions-screen p {
-    font-size: 12px;
-    margin-top: 0;
-    color: black;
-}
-
-#instructions-screen
-
-ol {
-    font-size: 12px;
-    font-weight: semi-bold;
-}
-
-/* Trying to add thin black border around images... and not currently working*/
-#game-grid img {
-    border: 5px black;
-}
-
-
-
-/*****************************
-  SCORE & LIVES STYLES
-*****************************/
-
-.score-display {
-    color: white;
-    font-size: 24px;
-    font-family: Arial, sans-serif;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 20px; /* Space between score and game grid */
-    text-align: center; /* Optional: Center the text */
-}
-
-#points-earned, #tries-left {
-    margin-right: 20px;
-}
-
-
-
-/*****************************
-            GRID 
-*****************************/
-
-#game-grid {/* targeting the full container/the outer wrapper holding all the grid squares */
-    display: flex; /* to arrange cells in the grid*/
-    flex-wrap: wrap; /* to arrange cells in the grid*/
-    width: 600px; /*sets grid size - fixed width for 12 columns so grid has stability depending on screen size */
-    margin: 0 auto; /* to center the grid on the page & fixes left alignment issue*/
-
-}
-
-#game-grid div { /* targeting each individual box inside the grid */
-    width: calc(100% / 12); /* makes every cell exactly 50px wide (600 divided by 12) */
-    height: 50px;  /* keeps height 50px for 4 rows - not sure why height in px works but height in % doesn't */
-    border: 1px solid lightblue; /* for cell outlines - could also use rgb(143, 199, 218) */
-}
-
-#game-grid div.cybertruck {
-    background-image: url("../images/cybertruck.jpg");
-    background-size: 100% 100%; /* stretch to fill cell - I'm ok if image is distorted - wanted it to be on purpose so car looks more cartoony */
-    /* Can use background-size: cover too to fill without the distortion */
-    background-repeat: no-repeat; /*to show one image*/
-    background-position: center; /*to center the in the cell*/
-}
-
-
-
-/*****************************
- FOOTER STYLES
-*****************************/
-footer {
-    display: flex;
-    justify-content: right;
-    gap: 15px;
-    /* margin-top: 12px; */
-}
-
-#play-again, #back-to-home-screen {
-    margin-top: 12px;
-}
+  }
+  
+  #gameover-screen h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .win-message {
+    color: green;
+  }
+  
+  .lose-message {
+    color: red;
+  }
+  

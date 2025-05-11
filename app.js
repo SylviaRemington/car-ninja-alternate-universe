@@ -1,5 +1,18 @@
 // CAR NINJA GAME JS
 console.log('JS LINKED AND WORKING');
+// CAR NINJA GAME JS
+
+//The code in the app adheres to coding conventions covered in lessons, 
+// like using plural names for arrays.
+
+// Render the game in the browser using the DOM manipulation techniques 
+// demonstrated in lecture.
+
+// The game is coded using proper indentation.
+
+//!! MAIN FOCUS IS ON MVP AND GETTING GAMEPLAY SCREEN TO WORK
+
+console.log('JS LINKED AND WORKING');
 
 /*
 ✅ Create grid first in HTML CSS & JS - so have game's playing field needed for cars and potholes
@@ -202,4 +215,8 @@ function startGameTimer() {
 //     spawnLoop = setInterval(spawnCar, 1000);
 //     startGameTimer();  //this line starts the timer
 //   });
+
+// ------------------------------
+// ------------------------------
+
 
