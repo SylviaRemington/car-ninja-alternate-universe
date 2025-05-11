@@ -1,222 +1,184 @@
-// CAR NINJA GAME JS
-console.log('JS LINKED AND WORKING');
-// CAR NINJA GAME JS
+// Game state variables
+let score = 0;
+let lives = 3;
+let timeLeft = 15;
+let gameActive = false;
+let spawnLoop;
+let gameTimer;
+let countdownInterval;
 
-//The code in the app adheres to coding conventions covered in lessons, 
-// like using plural names for arrays.
-
-// Render the game in the browser using the DOM manipulation techniques 
-// demonstrated in lecture.
-
-// The game is coded using proper indentation.
-
-//!! MAIN FOCUS IS ON MVP AND GETTING GAMEPLAY SCREEN TO WORK
-
-console.log('JS LINKED AND WORKING');
-
-/*
-✅ Create grid first in HTML CSS & JS - so have game's playing field needed for cars and potholes
-Set Up Variables and Displays for score/lives/displays: ✅ Set up score, ✅ lives, and displays to track and show the game’s state.
-
-✅ Set up these variables already:
-let score, let lives, const gameGrid, const width, const height, const cellCount, const cells, const cell,
-const gameplayScreen, const startButton, let gameTimer, let timeLeft, let countdownInterval,
-const scoreDisplay, const countdownDisplay
-
-
-Code the Start Game Button Functionality
-Code the Score Functionality
-Code the Lives Functionality
-Code the Timer Functionality
-Code the Car Spawning Functionality
-Code the game Over-Functionality
-Code the pothole spawning functionality
-Code the win/loss conditions
-Code for 3 Round Functionality
-
-
-create click event where click on car and number generates for score
-create click event where click on a cell that doesn't have points, and number generates for score
-*/
-
-
-/*-------- Temporary Code to Have For Gameplay Screen As Active Until I'm able to create code that moves from one screen to the next-----*/
-
-const livesDisplay = document.getElementById('tries-left');
-const countdownDisplay = document.getElementById('countdown-timer');
-const gameOverScreen = document.getElementById('gameover-screen');
-
-
-
-
-
-//CREATING GRID
-//CREATING gameplayScreen WITH gameGrid - finding and then making it active
-const gameplayScreen = document.getElementById('gameplay-screen'); // Find gameplay screen
-gameplayScreen.classList.add('active'); // Show gameplay screen - as active (as opposed to hidden)
-
-
-// Creating gameGrid
-/* Using tools/example Tristan showed in class*/
-const gameGrid = document.querySelector("#game-grid");//grabbing the grid in html
-const width = 12; // columns - width usually refers to how many columns are in each row. 12 columns * 12 rows = 144 squares total
-const height = 4; // rows
-const cellCount = width * height; //12 * 4 = 48 --currently creating a game with 12 across and 4 high -- subject to change later
-const cells = []; //creating an empty array that is meant to store each cell of the grid as I create them in a loop.
-const cell = document.createElement("div"); //creating the cells
-let score = 0; //creating score variable for tracking player's points
-let lives = 3; // creating lives variable for tracking player's lives (3 total)
-let car = document.createElement('img'); //defining car in global scope
-
-function createGrid() {
-        for (let i = 0; i < cellCount; i++) {
-                const cell = document.createElement("div");
-                cells.push(cell); // Store <div> elements, not numbers
-                gameGrid.appendChild(cell);
-        }
-}
-createGrid();
-
-// ------------------------------
-
-//CREATING START BUTTON FUNCTIONALITY
+// DOM elements
+const gameGrid = document.querySelector("#game-grid");
+const cells = [];
+const scoreDisplay = document.getElementById("points-earned");
+const livesDisplay = document.getElementById("tries-left");
+const countdownDisplay = document.getElementById("countdown-timer");
 const startButton = document.getElementById("start-game");
-startButton.addEventListener('click', startGame);
+const gameOverScreen = document.getElementById("gameover-screen");
+const gameplayScreen = document.getElementById("gameplay-screen");
+const playAgainButton = document.getElementById("play-again");
 
-function startGame() {
-    //reset game state
-    score = 0;
-    lives = 3;
-    updateScore();
-    updateLives();//this isn't defined yet
-    //start timer
-    startGameTimer();
-    //start spawning cars
-    spawnLoop = setInterval(spawnCar, 1000);
-}
-
-// ------------------------------
-
-//PART OF CAR SPAWNING FUNCTIONALITY
-//CREATING ADDING AND REMOVING CYBERTRUCK
-function addCyberTruck(cellNumber) {
-    cells[cellNumber].classList.add("cybertruck");
-}
-// addCybertruck(7);
-// ------
-
-function removeCyberTruck() {
-    cells[cybertruckPosition].classList.remove("cybertruck");
-}
-
-// ------------------------------
-
-//CREATING SPAWN CAR SECTION
-// SPAWN CAR Section
-// spawnCar is showing up in between cells and not hitting cells - Need to figure out why not working
-function spawnCar() { //Declaring a function called spawnCar that will run code to add a car image to the grid when called
-    const randomCellPick = Math.floor(Math.random() * cells.length); //storing a random # to pick a grid cell
-    //Math.random()built in function generates decimal number and then it's multiplied by 48 //don't totally get it but it's working
-    const cell = cells[randomCellPick];
-    if (!cell.querySelector('img')) { // Check if cell is empty with no image so it can put an image in there
-        const car = document.createElement('img'); //creates a new img html element
-        car.src = '../images/cybertruck.jpg'; //setting image source
-        car.alt = 'Cybertruck Car'; //setting alt text for accessibility and screen readers
-        car.style.width = '100%'; //newly created car is styled with the width of 100% of the cell
-        car.style.height = '100%'; //newly created car is styled with the height of 100% of the cell
-        car.classList.add('car'); // Ensure CSS positioning
-        cell.appendChild(car); //adds car as child of cell
-        car.addEventListener('click', () => {
-            score++;
-            updateScore();
-            car.remove(); //remove the car once it is clicked
-        })
+// Create the game grid
+function createGrid() {
+  for (let i = 0; i < 48; i++) { // 12x4 grid
+    const cell = document.createElement("div");
+    cells.push(cell);
+    gameGrid.appendChild(cell);
+    
+    // Add click event to each cell
+    cell.addEventListener("click", () => {
+      if (!gameActive) return;
+      
+      // Check if cell has a car
+      if (cell.classList.contains("car")) {
+        score += 1;
+        updateScore();
+        cell.classList.remove("car");
+        cell.innerHTML = "";
+      } 
+      // Check if cell has a pothole
+      else if (cell.classList.contains("pothole")) {
+        lives -= 1;
+        updateLives();
+        cell.classList.remove("pothole");
+        cell.innerHTML = "";
         
-        setTimeout(()=>{
-            car.remove();
-        }, 3000); //removes car from grid after 3 seconds if not clicked
-    }
+        if (lives <= 0) {
+          endGame(false); // Lose
+        }
+      }
+    });
+  }
 }
 
-// setInterval(spawnCar, 1000); // Spawn car every 1 second//! Commented out setInterval so that it doesn't immediately spawn cars immediately before game starts
-//setInterval is a function that repeatedly calls a function at a set interval.
-
-
-// ------------------------------
-
-//ADDING CLICK-TO-SCORE FUNCTIONALITY
-const scoreDisplay = document.getElementById("points-earned"); //selecting and creating a variable for the score display element
-
-function updateScore() { //updates the score
-    scoreDisplay.textContent = `Score: ${score}`;
+// Start the game
+function startGame() {
+  // Reset game state
+  score = 0;
+  lives = 3;
+  timeLeft = 15;
+  gameActive = true;
+  
+  // Clear the grid
+  cells.forEach(cell => {
+    cell.classList.remove("car", "pothole");
+    cell.innerHTML = "";
+  });
+  
+  // Update displays
+  updateScore();
+  updateLives();
+  
+  // Show gameplay screen
+  document.querySelectorAll(".screens").forEach(screen => {
+    screen.classList.remove("active");
+  });
+  gameplayScreen.classList.add("active");
+  
+  // Start game elements
+  startTimer();
+  spawnLoop = setInterval(spawnRandomElement, 1000);
 }
 
-// ------------------------------
-// ------------------------------
+// Spawn cars or potholes
+function spawnRandomElement() {
+  if (!gameActive) return;
+  
+  const emptyCells = cells.filter(cell => 
+    !cell.classList.contains("car") && 
+    !cell.classList.contains("pothole")
+  );
+  
+  if (emptyCells.length === 0) return;
+  
+  const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+  
+  // 70% chance for car, 30% for pothole
+  if (Math.random() < 0.7) {
+    randomCell.classList.add("car");
+    randomCell.innerHTML = '<img src="https://images.autotrader.com/scaler/408/306/hn/c/03775bd69037404893e710eea5872111.jpg" alt="Car" style="width:100%;height:100%;">';
+    
+    // Remove car after 3 seconds if not clicked
+    setTimeout(() => {
+      if (randomCell.classList.contains("car")) {
+        randomCell.classList.remove("car");
+        randomCell.innerHTML = "";
+        lives -= 1;
+        updateLives();
+        
+        if (lives <= 0) {
+          endGame(false); // Lose
+        }
+      }
+    }, 3000);
+  } else {
+    randomCell.classList.add("pothole");
+    randomCell.innerHTML = '<img src="https://media.istockphoto.com/id/174662203/photo/pot-hole.jpg" alt="Pothole" style="width:100%;height:100%;">';
+    
+    // Remove pothole after 3 seconds
+    setTimeout(() => {
+      if (randomCell.classList.contains("pothole")) {
+        randomCell.classList.remove("pothole");
+        randomCell.innerHTML = "";
+      }
+    }, 3000);
+  }
+}
 
-//ADDING COUNTDOWN TIMER FUNCTIONALITY, SO CODE DOESN'T GO ON INDEFINITELY
-//getting help from chatgpt, deepseek, and grok big time for this one
-
-let gameTimer; // creating gameTimer for the 15-second timeout
-let timeLeft = 15; //starting time for the 15-second timeout
-let countdownInterval; //for live countdown display turning red in last 3 seconds
-
-// const startButton = document.getElementById('start-game');//already declared
-startButton.addEventListener('click', restartGame);
-
-function startGameTimer() {
-    const countdownDisplay = document.getElementById('countdown-timer'); //selecting element
-    timeLeft = 15; //setting game time to 15 seconds - resetting time
+// Timer functions
+function startTimer() {
+  countdownDisplay.textContent = `Time Left: ${timeLeft}`;
+  
+  countdownInterval = setInterval(() => {
+    timeLeft--;
     countdownDisplay.textContent = `Time Left: ${timeLeft}`;
+    
+    if (timeLeft <= 3) {
+      countdownDisplay.classList.add("low-time");
+    }
+    
+    if (timeLeft <= 0) {
+      endGame(score >= 10); // Win if score >= 10, else lose
+    }
+  }, 1000);
+}
+
+// End the game
+function endGame(didWin) {
+  gameActive = false;
+  clearInterval(spawnLoop);
+  clearInterval(countdownInterval);
   
-    // Countdown that updates every second
-    countdownInterval = setInterval(() => {
-      timeLeft--;
-      countdownDisplay.textContent = `Time Left: ${timeLeft}`;
-
-      if(timeLeft <= 3) {
-        countdownDisplay.classList.add("low-time");
-      } else {
-        countdownDisplay.classList.remove("low-time");
-      }
-
-      if (timeLeft <= 0) {
-        clearInterval(countdownInterval);
-      }
-    }, 1000);
+  // Show game over screen
+  gameplayScreen.classList.remove("active");
+  gameOverScreen.classList.add("active");
   
-    // After 15 seconds, end the game
-    gameTimer = setTimeout(() => {
-      triggerGameOver();
-    }, 15000);
-  }
+  // Set win/lose message
+  const message = document.createElement("h2");
+  message.textContent = didWin ? "You Win!" : "Game Over!";
+  message.className = didWin ? "win-message" : "lose-message";
   
-  function triggerGameOver() {
-    clearInterval(countdownInterval);
-    clearTimeout(gameTimer);
-    clearInterval(spawnLoop); //stops spawning cars
-  }
+  const scoreMessage = document.createElement("p");
+  scoreMessage.textContent = `Final Score: ${score}`;
+  
+  gameOverScreen.innerHTML = "";
+  gameOverScreen.appendChild(message);
+  gameOverScreen.appendChild(scoreMessage);
+  gameOverScreen.appendChild(playAgainButton.cloneNode(true));
+}
 
-  function restartGame () {
-    spawnLoop = setInterval(spawnCar, 1000);
-    startGameTimer();
-  }
+// Update displays
+function updateScore() {
+  scoreDisplay.textContent = `Score: ${score}`;
+}
 
+function updateLives() {
+  livesDisplay.textContent = `Lives: ${lives}`;
+}
 
-//   function restartGame() {
-    // reset score, lives, etc.
-//     startCountdown(() => {
-//       spawnLoop = setInterval(spawnCar, 1000);
-//       startGameTimer(); // this line starts the timer
-//     });
-//   }
+// Event listeners
+startButton.addEventListener("click", startGame);
+playAgainButton.addEventListener("click", startGame);
 
-//   startCountdown(() => {
-//     spawnLoop = setInterval(spawnCar, 1000);
-//     startGameTimer();  //this line starts the timer
-//   });
-
-// ------------------------------
-// ------------------------------
-
-
+// Initialize the game
+createGrid();
