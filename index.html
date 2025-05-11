@@ -1,0 +1,110 @@
+<!-- CAR NINJA GAME HTML -->
+<!DOCTYPE html>
+<html lang="en"><!-- Defines the webpage in the english language. -->
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Ninja</title> <!-- Title of game to be displayed in browser tab -->
+    <meta property="og:title" content="Car Ninja"><!-- Added this line so that Car Ninja title shows up in the browser tab / It wasn't showing up prior to this.-->
+    <script defer src="./js/app.js"></script> <!-- Link to my JS file -->
+    <script defer src="./js/data.js"></script> <!-- Link to my data.js file -->
+    <!-- <link rel="stylesheet" href="./css/reset.css">  --> <!-- Link to Meyers CSS reset - will implement this as soon as I have more time to do styles-->
+    <link rel="stylesheet" href="./css/style.css"> <!-- Link to my CSS file -->
+</head>
+
+
+<body>
+
+    <!-- HEADER holds the game's title / Wanted to use Semantic Elements in HTML for better visibility & SEO on search engines. -->
+    <header class="header">
+        <h1>Car Ninja Game!</h1>
+    </header>
+
+
+    <h2 id ="gameplay-screen-title" class="screen-title">Time to Ninja Chop - Gameplay Screen</h2>
+
+     
+    <!-- Using Nav Bar for buttons at the top instead of div - better navigation for all & easier readbility for SEO/other coders-->
+    <nav>
+        <button id="start-game" class="buttons">Start Game</button>
+        <button id="instructions" class="buttons">Instructions</button>
+        <button id="adjust-game-speed" class="buttons">Adjust Game Speed</button><!-- the ability to choose a different game speed each time-->
+        <button id="pause-game" class="buttons">Pause Game</button><!-- Also have a button to click on if you want to pause game or leave/start over -->
+        <button id="leave-game" class="buttons">Leave Game</button>
+    </nav>
+
+
+
+    <!-- MAIN GAME SCREENS - houses the game's 4 screens of the Starter Screen, the Instructions Screen, the Gameplay Screen, and the GameOver Screen -->
+    <main>
+
+        <!-- STARTER SCREEN -- chose to do section instead of div for each screen for better SEO & readibility -->
+        <section id="starter-screen" class="screens">
+            <button id="get-your-car" class="buttons">Get Your Car</button><!-- the ability to choose different cars each time play -->
+            <button id="swords" class="buttons">Sword, Stars, or Nunchucks</button><!-- the ability to choose different weapons each time play -->
+            <button id="level-up" class="buttons">Level Up!</button><!-- the ability to level up with different missions after a certain amount of points -->
+            <h2>Welcome to Car Ninja</h2>
+            <h3>Ready to Ninja Chop Some Cars?!!!</h3>
+            <p>Click "Start Game" to begin or read more about the game by clicking "Instructions" to learn how to
+                play!</p>
+        </section>
+
+
+        <!-- INSTRUCTIONS SCREEN -->
+        <section id="instructions-screen" class="screens">
+            <h2>Instructions</h2>
+            <p><strong>Your challenge if you choose to accept it...</strong></p>
+            <ol>
+                <li>Click cars to score points. Don't you wanna get slow drivers, bad drivers, and cybertrucks off the road?</li>
+                <li>Avoid potholes to keep lives. If you click on a pothole, you lose a life!</li>
+                <li>Score 10+ points in 30 seconds to win!</li>
+            </ol>
+        </section>
+
+
+        <!-- GAMEPLAY SCREEN -->
+        <section id="gameplay-screen" class="screens">
+
+            <!-- SCORE DISPLAY - recommended to use span because inline and because it's dynamic text-->
+            <div class="score-display"><!-- Using class instead of id for reusability, in case create another screen with points earned. -->
+                <span id="points-earned">Score: 0</span><!-- Using an id name that makes sense to me for easier referencing -->
+                <span id="tries-left">Lives: 3</span><!-- Using an id name that makes sense to me for easier referencing -->
+                <span id="countdown-timer">Time Left: 15</span>
+            </div>
+
+            <!-- GAME-GRID -->
+            <div id="game-grid">
+                <!-- <img src="https://images.autotrader.com/scaler/408/306/hn/c/03775bd69037404893e710eea5872111.jpg"
+                    width="100" height="100" alt="Car Name Of Image Here">
+                <img src="https://media.istockphoto.com/id/174662203/photo/pot-hole.jpg?s=612x612&w=0&k=20&c=HhFYQD5qAJItGzYWJJQ72nxBR8iidL7Np2g82dfvnoM="
+                    width="100" height="100" alt="Pothole Image Here"> -->
+            </div>
+            <!-- Create more car image/images -->
+            <!-- Create potholes/bombs you shouldn't click -->
+            <!-- have a 'ready...3 2 1... go'section -->
+        </section>
+
+
+        <!-- GAMEOVER SCREEN... have Bill Paxton saying "Game Over Man! Game Over! Why don't we put her in charge?" -->
+        <section id="gameover-screen" class="screens">
+            <button id="fun-facts" class="buttons">Fun Facts</button>
+        </section>
+
+    </main>
+
+    
+    <!-- FOOTER  -->
+    <footer>
+        <button id="play-again" class="buttons">Play Again!</button>
+        <button id="back-to-home-screen" class="buttons">Back To Home Screen</button>
+        <!-- <button id="ninja-ads" class="buttons">Ads?! Ninja Chop Them!</button> -->
+        <!-- create funny ads that pop up and then you ninja chop them randomly whether in the game or outside the game. -->
+    </footer>
+
+</body>
+
+</html>
+
+
