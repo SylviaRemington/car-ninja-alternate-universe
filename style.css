@@ -1,36 +1,213 @@
-/* Add to your existing CSS */
+/* CAR NINJA GAME CSS */
 
-/* Game elements */
-.car {
-    cursor: pointer;
-  }
-  
-  .pothole {
-    background-image: url("https://media.istockphoto.com/id/174662203/photo/pot-hole.jpg");
-    background-size: cover;
-    cursor: pointer;
-  }
-  
-  .low-time {
-    color: red;
-    font-weight: bold;
-  }
-  
-  /* Game over screen styles */
-  #gameover-screen {
-    text-align: center;
-  }
-  
-  #gameover-screen h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
-  
-  .win-message {
-    color: green;
-  }
-  
-  .lose-message {
-    color: red;
-  }
-  
+/* CSS Flexbox and/or Grid is used for page layout design. */
+
+/* Colors used on the site have appropriate contrast that meet the 
+WCAG 2.0 level AA standard. */
+
+/* The game is coded using proper indentation. */
+
+/*ADDTL INFO FOR HIDING ELEMENTS - TO BE DELETED BEFORE SUBMISSION
+
+What Does display: none Mean?
+
+Definition: display: none in CSS hides an element completely from the page, removing it from the 
+layout as if it doesn’t exist. It’s not visible, and it takes up no space (unlike visibility: hidden, 
+which hides but keeps space).
+
+Use in Your Game: You’d use display: none to hide screens (e.g., <div id="gameplay-screen">) or content 
+(e.g., instructions) initially, then use JavaScript to set display: block to show them when needed 
+(e.g., when clicking “Play Game” or “Instructions”, user stories #1–2).
+
+Example Context: Apply display: none to <div id="gameplay-screen"> in CSS so it’s hidden until the game starts,
+ controlled by JavaScript. */
+
+
+/*******************************
+  RESETS & GLOBAL STYLES IN BODY
+********************************/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: lightgrey;
+}
+
+
+
+/*****************************
+HEADER STYLES
+*****************************/
+header h1 { /* chose header h1 to differentiate between other headers on other screens */
+  color: cornflowerblue;/* originally using this color and might come back to color: rgb(39, 39, 231); */
+  -webkit-text-stroke: 1px black; /* Black outline around letters */
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+h2 {
+  margin-top: 0; 
+  /* removes all space above */
+  margin-bottom: .8px;
+  color: cornflowerblue;
+  -webkit-text-stroke: 1px black;
+  text-align: center;
+  margin-bottom: 11px;
+}
+
+
+
+/*****************************
+NAVIGATION BAR STYLES
+*****************************/
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+
+
+/*****************************
+BUTTON STYLES
+*****************************/
+
+/* ALL BUTTONS */
+.buttons {
+  /* dark blue with light blue border */
+  background-color: cornflowerblue;
+}
+
+/* START GAME BUTTON & INSTRUCTIONS BUTTONS */
+#start-game, #instructions {
+  background-color: yellow;
+}
+
+/* BACK TO HOME SCREEN BUTTON */
+#play-again, #back-to-home-screen {
+  background-color: yellow;
+}
+
+
+
+/*******************************
+HIDING SCREENS
+********************************/
+.screens {
+  display: none;
+}
+
+.active { 
+  /* Any element with class="active" will be visible on the screen. And the class="active" is done in JS */
+  display: block;
+}
+
+
+
+/*****************************
+SCREEN-SPECIFIC STYLES
+*****************************/
+
+/* Styling Of Different Screens below */
+#starter-screen h2, #instructions-screen h2 {
+  color: cornflowerblue;/* originally using this color and might come back to color: rgb(39, 39, 231); */
+  -webkit-text-stroke: 1px black; /* Black outline around letters */
+  text-align: left;
+}
+
+/* #gameplay-screen-title {} */
+
+
+/* DOUBLE CHECK THIS STYLING BELOW WITH RESETING MARGIN AND MAKE SURE IT'S CORRECT */
+#instructions-screen p,
+#instructions-screen ol {
+margin: 0;/* Resets top/bottom margins */
+}
+
+
+#instructions-screen p {
+  font-size: 12px;
+  margin-top: 0;
+  color: black;
+}
+
+#instructions-screen
+
+ol {
+  font-size: 12px;
+  font-weight: semi-bold;
+}
+
+/* Trying to add thin black border around images... and not currently working*/
+#game-grid img {
+  border: 5px black;
+}
+
+
+
+/*****************************
+SCORE & LIVES STYLES
+*****************************/
+
+.score-display {
+  color: white;
+  font-size: 24px;
+  font-family: Arial, sans-serif;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 20px; /* Space between score and game grid */
+  text-align: center; /* Optional: Center the text */
+}
+
+#points-earned, #tries-left {
+  margin-right: 20px;
+}
+
+
+
+/*****************************
+          GRID 
+*****************************/
+
+#game-grid {/* targeting the full container/the outer wrapper holding all the grid squares */
+  display: flex; /* to arrange cells in the grid*/
+  flex-wrap: wrap; /* to arrange cells in the grid */
+  width: 600px; /*sets grid size - fixed width for 12 columns so grid has stability depending on screen size */
+  margin: 0 auto; /* to center the grid on the page & fixes left alignment issue*/
+
+}
+
+#game-grid div { /* targeting each individual box inside the grid */
+  width: calc(100% / 12); /* makes every cell exactly 50px wide (600 divided by 12) */
+  height: 50px;  /* keeps height 50px for 4 rows - not sure why height in px works but height in % doesn't */
+  border: 1px solid rgb(17, 111, 142); /* for cell outlines */
+  box-sizing: border-box; /* ensures borders are included in width */
+}
+
+#game-grid div.cybertruck {
+  background-image: url("../images/cybertruck.jpg");
+  background-size: 100% 100%; /* stretch to fill cell - I'm ok if image is distorted - wanted it to be on purpose so car looks more cartoony */
+  /* Can use background-size: cover too to fill without the distortion */
+  background-repeat: no-repeat; /*to show one image*/
+  background-position: center; /*to center the in the cell*/
+}
+
+
+
+/*****************************
+FOOTER STYLES
+*****************************/
+footer {
+  display: flex;
+  justify-content: right;
+  gap: 15px;
+  /* margin-top: 12px; */
+}
+
+#play-again, #back-to-home-screen {
+  margin-top: 12px;
+}
+

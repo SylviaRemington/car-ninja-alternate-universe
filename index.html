@@ -1,4 +1,21 @@
 <!-- CAR NINJA GAME HTML -->
+
+<!-- Instructions about how to play the game are included in your app. -->
+<!-- Include win/loss logic and render win/loss messages in HTML. The game you chose must have a win/lose condition. -->
+<!-- All images on the site have alt text. -->
+<!-- No text is placed on top of an image in a way that makes the text inaccessible. -->
+<!-- The game is coded using proper indentation. -->
+
+<!-- First create the screen/grid where cars move and have start button there.
+Then if have time create the other screens.
+Create the grid.
+Then create a start game button, an instructions button, a pause button, 
+an end game button, and also a place where points can be earned
+
+Also, created a data area where I can put car comments 
+and also audio sounds and funny comments. -->
+
+ 
 <!DOCTYPE html>
 <html lang="en"><!-- Defines the webpage in the english language. -->
 
@@ -30,9 +47,9 @@
     <nav>
         <button id="start-game" class="buttons">Start Game</button>
         <button id="instructions" class="buttons">Instructions</button>
-        <button id="adjust-game-speed" class="buttons">Adjust Game Speed</button><!-- the ability to choose a different game speed each time-->
-        <button id="pause-game" class="buttons">Pause Game</button><!-- Also have a button to click on if you want to pause game or leave/start over -->
-        <button id="leave-game" class="buttons">Leave Game</button>
+        <!-- <button id="adjust-game-speed" class="buttons">Adjust Game Speed</button>the ability to choose a different game speed each time -->
+        <!-- <button id="pause-game" class="buttons">Pause Game</button>Also have a button to click on if you want to pause game or leave/start over -->
+        <!-- <button id="leave-game" class="buttons">Leave Game</button> -->
     </nav>
 
 
@@ -58,8 +75,9 @@
             <p><strong>Your challenge if you choose to accept it...</strong></p>
             <ol>
                 <li>Click cars to score points. Don't you wanna get slow drivers, bad drivers, and cybertrucks off the road?</li>
-                <li>Avoid potholes to keep lives. If you click on a pothole, you lose a life!</li>
-                <li>Score 10+ points in 30 seconds to win!</li>
+                <!-- <li>Avoid potholes to keep lives. If you click on a pothole, you lose a life!</li> //for level up -->
+                <li>Score 17+ points in 15 seconds to win!</li>
+                <li>Hit the "Start Game" button to play again!</li>
             </ol>
         </section>
 
@@ -70,7 +88,7 @@
             <!-- SCORE DISPLAY - recommended to use span because inline and because it's dynamic text-->
             <div class="score-display"><!-- Using class instead of id for reusability, in case create another screen with points earned. -->
                 <span id="points-earned">Score: 0</span><!-- Using an id name that makes sense to me for easier referencing -->
-                <span id="tries-left">Lives: 3</span><!-- Using an id name that makes sense to me for easier referencing -->
+                <!-- <span id="tries-left">Lives: 3</span>Using an id name that makes sense to me for easier referencing -->
                 <span id="countdown-timer">Time Left: 15</span>
             </div>
 
@@ -89,16 +107,17 @@
 
         <!-- GAMEOVER SCREEN... have Bill Paxton saying "Game Over Man! Game Over! Why don't we put her in charge?" -->
         <section id="gameover-screen" class="screens">
-             <!-- Content will be added dynamically by JavaScript -->
-         </section>
+            <button id="fun-facts" class="buttons">Fun Facts</button>
+        </section>
 
     </main>
 
+    
 
     <!-- FOOTER  -->
     <footer>
-        <button id="play-again" class="buttons">Play Again!</button>
-        <button id="back-to-home-screen" class="buttons">Back To Home Screen</button>
+        <!-- <button id="play-again" class="buttons">Play Again!</button> -->
+        <!-- <button id="back-to-home-screen" class="buttons">Back To Home Screen</button> //to be used later when work on game later-->
         <!-- <button id="ninja-ads" class="buttons">Ads?! Ninja Chop Them!</button> -->
         <!-- create funny ads that pop up and then you ninja chop them randomly whether in the game or outside the game. -->
     </footer>
@@ -106,5 +125,3 @@
 </body>
 
 </html>
-
-
