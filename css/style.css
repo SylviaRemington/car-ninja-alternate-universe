@@ -1,28 +1,5 @@
 /* CAR NINJA GAME CSS */
 
-/* CSS Flexbox and/or Grid is used for page layout design. */
-
-/* Colors used on the site have appropriate contrast that meet the 
-WCAG 2.0 level AA standard. */
-
-/* The game is coded using proper indentation. */
-
-/*ADDTL INFO FOR HIDING ELEMENTS - TO BE DELETED BEFORE SUBMISSION
-
-What Does display: none Mean?
-
-Definition: display: none in CSS hides an element completely from the page, removing it from the 
-layout as if it doesn’t exist. It’s not visible, and it takes up no space (unlike visibility: hidden, 
-which hides but keeps space).
-
-Use in Your Game: You’d use display: none to hide screens (e.g., <div id="gameplay-screen">) or content 
-(e.g., instructions) initially, then use JavaScript to set display: block to show them when needed 
-(e.g., when clicking “Play Game” or “Instructions”, user stories #1–2).
-
-Example Context: Apply display: none to <div id="gameplay-screen"> in CSS so it’s hidden until the game starts,
- controlled by JavaScript. */
-
-
 /*******************************
   RESETS & GLOBAL STYLES IN BODY
 ********************************/
@@ -47,8 +24,7 @@ header h1 { /* chose header h1 to differentiate between other headers on other s
 }
 
 h2 {
-  margin-top: 0; 
-  /* removes all space above */
+  margin-top: 0; /* removes all space above */
   margin-bottom: .8px;
   color: cornflowerblue;
   -webkit-text-stroke: 1px black;
@@ -99,7 +75,7 @@ HIDING SCREENS
 }
 
 .active { 
-  /* Any element with class="active" will be visible on the screen. And the class="active" is done in JS */
+  /* elements with class="active" will be visible on the screen. And the class="active" is done in JS */
   display: block;
 }
 
@@ -211,3 +187,39 @@ footer {
   margin-top: 12px;
 }
 
+
+/*****************************
+GAMEOVER SCREEN STYLES
+*****************************/
+
+#gameover-screen {
+  text-align: center;
+  padding-top: 20px; /* can move this higher or lower depending on where I want the game over text to fit */
+}
+
+#gameover-screen button {
+  display: block;
+  margin: 0 auto;
+}
+
+/*****************************
+INSTRUCTIONS SCREEN STYLES
+*****************************/
+#instructions-screen {
+  text-align: center;
+  padding: 20px;
+}
+
+#instructions-screen ol {
+  text-align: left;
+  display: inline-block;
+  margin: 20px auto;
+}
+
+#instructions-screen h2 {
+  text-align: center;
+}
+
+#back-button {
+  margin-top: 20px;
+}
