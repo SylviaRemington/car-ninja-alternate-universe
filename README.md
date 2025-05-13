@@ -18,7 +18,7 @@ Ultimately, in its current iteration, it is purely a game in which you click on 
 
 ## Getting Started
 
-### Deployed Game: wait for it... wait for it...
+## Deployed Game: wait for it... wait for it...
 *(We will be creating the deployed link on Project Presentations Day)*
 
 ## Instructions: 
