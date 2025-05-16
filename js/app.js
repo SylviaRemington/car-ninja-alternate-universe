@@ -67,7 +67,7 @@ backButton.addEventListener('click', () => {
     gameplayScreen.classList.add('active');
 });
 
-
+/* ------CREATING GRID ----------*/
 
 //CREATING GRID
 //CREATING gameplayScreen WITH gameGrid - finding and then making it active
@@ -97,7 +97,7 @@ function createGrid() {
 createGrid();
 
 
-// ------------------------------
+/* ------CREATING START BUTTON FUNCTIONALITY ----------*/
 
 
 //CREATING START BUTTON FUNCTIONALITY
@@ -128,7 +128,8 @@ startButton.addEventListener('click', () => {
 
 
 
-// ------------------------------
+/* ------ADD & REMOVE CYBERTRUCKS FOR CAR SPAWNING FUNCTIONALITY ----------*/
+
 
 //PART OF CAR SPAWNING FUNCTIONALITY
 //CREATING ADDING AND REMOVING CYBERTRUCK
@@ -143,7 +144,7 @@ function removeCyberTruck() {
 }
 
 
-// ------------------------------
+/* ------CREATING SPAWN CAR FUNCTIONALITY ----------*/
 
 //CREATING SPAWN CAR SECTION
 // SPAWN CAR Section
@@ -179,7 +180,8 @@ function spawnCar() { //Declaring a function called spawnCar that will run code 
 //setInterval is a function that repeatedly calls a function at a set interval.
 
 
-// ------------------------------
+/* ------CREATING CLICK-TO-SCORE FUNCTIONALITY ----------*/
+
 
 //ADDING CLICK-TO-SCORE FUNCTIONALITY
 const scoreDisplay = document.getElementById("points-earned"); //selecting and creating a variable for the score display element
@@ -188,7 +190,9 @@ function updateScore() { //updates the score
     scoreDisplay.textContent = `Score: ${score}`;
 }
 
-// ------------------------------
+
+/* ------CREATING COUNTDOWN TIMER FUNCTIONALTIY ----------*/
+
 
 //ADDING COUNTDOWN TIMER FUNCTIONALITY, SO CODE DOESN'T GO ON INDEFINITELY
 //getting help from chatgpt, deepseek, and grok big time for this one:
@@ -269,11 +273,15 @@ function startGameTimer() {
         startGame();
     }
 
+    
+
+
+/* ------CODE GRAVEYARD FOR OLD CODE NOT USING OR OLD NOTES ----------*/
+
+
 // function restartGame() {
 //     startGame();
 // };
-
-
 
 
 // Code Graveyard - Addtl added after
